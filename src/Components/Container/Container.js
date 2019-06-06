@@ -19,9 +19,16 @@ export default class Container extends Component {
   }
 
   getDragonTreasure() {
+    
     // axios GET to /api/treasure/dragon here
+    axios.get('/api/treasure/dragon')
+      .then(res => {
+        this.setState({
+          treasures: {...this.state.treasures, dragon: res.data}
+        })
+      })
+      .catch(err => console.log(err));
   }
-
   getAllTreasure() {
     // axios GET to /api/treasure/all here
   }
@@ -40,6 +47,8 @@ export default class Container extends Component {
   }
 
   render() {
+    console.log(this.state.treasures)
+
     const { username } = this.props.user;
     const { dragon, user, all } = this.state.treasures;
     return (

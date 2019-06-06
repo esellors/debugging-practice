@@ -2,8 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
+const authCtrl = require('./controllers/authController');
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+
+app.use((req, res, next) => {
+   console.log('Database request made');
+   next();
+});
 
 app.use(express.json());
 
@@ -18,7 +24,7 @@ app.use(session({
    secret: SESSION_SECRET
 }));
 
-
+app.post('/auth/register', authCtrl.register);
 
 
 

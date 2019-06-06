@@ -38,7 +38,7 @@ module.exports = {
       const isAuthenticated = bcrypt.compareSync(password, user.hash)
 
       if (!isAuthenticated) {
-         res.status(403).json({message: 'Password incorrect. Try again.'})
+         return res.status(403).json({message: 'Password incorrect. Try again.'})
       }
 
       req.session.user = {

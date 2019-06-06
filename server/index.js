@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authCtrl = require('./controllers/authController');
+const treasureCtrl = require('./controllers/treasureController');
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -27,6 +28,8 @@ app.use(session({
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
+
+app.get('/api/treasure/dragon', treasureCtrl.dragonTreasure);
 
 
 

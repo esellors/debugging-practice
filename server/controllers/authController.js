@@ -16,8 +16,6 @@ module.exports = {
          const registeredUser = await db.register_user(isAdmin, username, hash);
          const user = registeredUser[0];
 
-         console.log(user)
-
          req.session.user = {
             isAdmin: user.is_admin,
             id: user.id,
@@ -25,5 +23,30 @@ module.exports = {
          }
          res.status(201).json(req.session.user);
       }
+   },
+   login: async (req, res) => {
+      const {username, password} = req.body;
+      const db = req.app.get('db');
+
+      const foundUser = await db.get_user(username);
+      const user = foundUser[0]
+
+      if (!user) {
+         return res.status(401).json({message: 'User not found. Please register as a new user.'})
+      } 
+      
+      const isAuthenticated = bcrypt.compareSync(password, user.hash)
+
+      if (!isAuthenticated) {
+         res.status(403).json({message: 'Password incorrect. Try again.'})
+      }
+
+      req.session.user = {
+         isAdmin: user.is_admin,
+         id: user.id,
+         username: user.username
+      }
+
+      res.status(200).json(req.session.user);
    }
 }

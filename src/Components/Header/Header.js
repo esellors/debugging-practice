@@ -49,6 +49,7 @@ export default class Header extends Component {
           username: '',
           password: ''
         })
+        console.dir(err)
         alert(err.response.request.response)
       });
   }

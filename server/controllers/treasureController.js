@@ -17,5 +17,11 @@ module.exports = {
 
       const userTreasure = await req.app.get('db').add_user_treasure(treasureURL, id)
       res.status(200).json(userTreasure);
+   },
+   getAllTreasure: async (req, res) => {
+      console.log('hit')
+      const allTreasure = await req.app.get('db').get_all_treasure;
+      console.log(`All treasure: ${allTreasure}`);
+      res.status(200).json(allTreasure);
    }
 }

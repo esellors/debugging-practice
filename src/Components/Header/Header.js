@@ -66,7 +66,7 @@ export default class Header extends Component {
           username: '',
           password: ''
         })
-        alert(err.response.request.response)
+        alert(err.response.data.message)
       });
   }
 

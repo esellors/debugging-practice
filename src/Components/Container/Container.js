@@ -41,7 +41,7 @@ export default class Container extends Component {
           treasures: {...this.state.treasures, user: res.data}
         })
       })
-      .catch(err => alert(err.response.data.message));
+      .catch(err => console.log(err.response.data.message));
   }
 
   addMyTreasure(newMyTreasure) {

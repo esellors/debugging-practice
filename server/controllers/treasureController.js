@@ -19,9 +19,9 @@ module.exports = {
       res.status(200).json(userTreasure);
    },
    getAllTreasure: async (req, res) => {
-      console.log('hit')
-      const allTreasure = await req.app.get('db').get_all_treasure;
-      console.log(`All treasure: ${allTreasure}`);
+      console.log('get all treasures hit')
+      const allTreasure = await req.app.get('db').get_all_treasure();
+      console.log(allTreasure)
       res.status(200).json(allTreasure);
    }
 }

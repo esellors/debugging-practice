@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import './Container.css';
 import Treasure from '../Treasure';
@@ -9,7 +9,6 @@ export default class Container extends Component {
     this.state = {
       treasures: {},
     };
-    this.addMyTreasure = this.addMyTreasure.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -44,7 +43,7 @@ export default class Container extends Component {
 
   getMyTreasure() {
     // axios GET to /api/treasure/user here
-    axios.get('/api/treasure/user')
+    axios.post('/api/treasure/user')
       .then(res => {
         this.setState({
           treasures: {...this.state.treasures, user: res.data}
@@ -83,7 +82,7 @@ export default class Container extends Component {
         {user && username ? (
           <div className="treasureBox loggedIn">
             <h1>
-              {this.props.user.username}
+              {this.props.user.usernamee}
               's treasure
             </h1>
             <Treasure treasure={user} addMyTreasure={this.addMyTreasure} />

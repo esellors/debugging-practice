@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-export default class AddTreasure extends Component {
+export default class AddTreasure extends Component () {
   constructor() {
     super();
     this.state = {
@@ -10,12 +9,11 @@ export default class AddTreasure extends Component {
   }
 
   handleInput(e) {
-    this.setState({ treasureURL: e.target.value });
+    this.state({ treasureURL: e.target.value });
   }
 
   addTreasure() {
     // post to /api/treasure/user here
-    const {treasureURL} = this.state;
     axios.post('/api/treasure/user', {treasureURL})
       .then(res => {
         this.props.addMyTreasure(res.data);
@@ -35,7 +33,7 @@ export default class AddTreasure extends Component {
           onChange={e => this.handleInput(e)}
           value={this.state.treasureURL}
         />
-        <button onClick={() => this.addTreasure()}>Add</button>
+        <button onClick={() => this.props.addtreasure()}>Add</button>
       </div>
     );
   }

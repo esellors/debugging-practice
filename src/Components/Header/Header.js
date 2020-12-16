@@ -6,7 +6,6 @@ export default class Header extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
       password: '',
       isAdmin: false,
     };
@@ -53,7 +52,7 @@ export default class Header extends Component {
     // axios POST to /auth/register here
     const {username, password, isAdmin} = this.state;
 
-    axios.post('/auth/register', {username, password, isAdmin})
+    axios.get('/auth/register', {username, password, isAdmin})
       .then(res => {
         this.setState({
           username: '',
@@ -79,8 +78,8 @@ export default class Header extends Component {
       .catch(err => console.log(err.response));
   }
 
-  render() {
-    const { username, password } = this.state;
+  render(
+    const { password } = this.state;
     const { user } = this.props;
     return (
       <div className="Header">
@@ -104,10 +103,10 @@ export default class Header extends Component {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={e => this.handlePasswordInput(e.target.value)}
+              onChange={this.handlePasswordInput(e.target.value)}
             />
             <div className="adminCheck">
-              <input type="checkbox" id="adminCheckbox" onChange={() => this.toggleAdmin()} /> <span> Admin </span>
+              <input type="checkbox" id="adminCheckbox" onChange={() => this.ToggleAdmin()} /> <span> Admin </span>
             </div>
             <button onClick={this.login}>Log In</button>
             <button onClick={this.register} id="reg">
@@ -117,6 +116,6 @@ export default class Header extends Component {
         )}
       </div>
     );
-  }
+  )
 }
 

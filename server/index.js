@@ -8,14 +8,14 @@ const auth = require('./middlewares/authMiddleware');
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
-app.use((req, res, next) => {
-   console.log('Database request made');
-   next();
-});
-
 app.use(express.json());
 
-massive(CONNECTION_STRING).then(db => {
+massive({
+   connectionString: CONNECTION_STRING,
+   ssl: {
+       rejectUnauthorized: false
+   }
+}).then(db => {
    app.set('db', db);
    console.log('Database connected')
 })

@@ -33,7 +33,6 @@ export default class Container extends Component {
     // axios GET to /api/treasure/all here
     axios.get('/api/treasure/all')
       .then(res => {
-        console.log(res.data)
         this.setState({
           treasures: {...this.state.treasures,
             all: res.data}

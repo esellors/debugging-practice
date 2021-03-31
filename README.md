@@ -1,3 +1,7 @@
+This is 'Dragons Lair', all bugged out! Can you squash all the bugs?
+
+Below are the original instructions for the project. Your goal is to get the front end and back end up and running, and then have a fully functioning app as described below!
+
 <img src="https://s3.amazonaws.com/devmountain/readme-logo.png" width="250" align="right">
 
 # Bcrypt Dragon's Lair
